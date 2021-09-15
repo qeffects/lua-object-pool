@@ -2,7 +2,7 @@
 export class ObjectPool<Obj>{
     create: () => Partial<Obj>;
     maxSize: number | false;
-    freePool: Partial<Obj>[]|undefined[];
+    freePool: Partial<Obj>[];
 
     constructor(initialSize:number, maxSize:number | false, creator: (this:any) => Obj){
         this.create = creator;
@@ -30,6 +30,7 @@ export class ObjectPool<Obj>{
 
     clear(){
         for (const i of $range(1, this.freePool.length)){
+            /* @ts-ignore */
             this.freePool[i-1] = undefined;
         }
     }
