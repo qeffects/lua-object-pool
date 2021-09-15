@@ -1,6 +1,6 @@
 {
   "name": "lua-object-pool",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Lua object pool",
   "main": "index.lua",
   "scripts": {
