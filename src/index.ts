@@ -9,7 +9,7 @@ export class ObjectPool<Obj>{
         initialSize:number,
         maxSize:number | false,
         creator: (this:any) => Obj,
-        reset?: (o: Obj) => void
+        reset?: (this:any, o: Obj) => void
     ){
         this.create = creator;
         this.reset = reset;
@@ -30,7 +30,7 @@ export class ObjectPool<Obj>{
         if (this.reset){
             this.reset(obj);
         }
-        
+
         if (this.maxSize){
             if (this.freePool.length<this.maxSize){
                 this.freePool[this.freePool.length] = obj
