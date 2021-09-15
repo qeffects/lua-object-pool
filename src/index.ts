@@ -1,11 +1,18 @@
 
 export class ObjectPool<Obj>{
-    create: () => Partial<Obj>;
-    maxSize: number | false;
-    freePool: Partial<Obj>[];
+    private create: () => Partial<Obj>;
+    private reset?: (o: Obj) => void;
+    private maxSize: number | false;
+    private freePool: Partial<Obj>[];
 
-    constructor(initialSize:number, maxSize:number | false, creator: (this:any) => Obj){
+    constructor(
+        initialSize:number,
+        maxSize:number | false,
+        creator: (this:any) => Obj,
+        reset?: (o: Obj) => void
+    ){
         this.create = creator;
+        this.reset = reset;
         this.maxSize = maxSize;
         this.freePool = [];
 
@@ -20,6 +27,10 @@ export class ObjectPool<Obj>{
     }
 
     free(obj: Obj){
+        if (this.reset){
+            this.reset(obj);
+        }
+        
         if (this.maxSize){
             if (this.freePool.length<this.maxSize){
                 this.freePool[this.freePool.length] = obj
