@@ -14,7 +14,8 @@ export class ObjectPool<Obj>{
         }
     }
 
-    take(){
+    take(): Partial<Obj>{
+        /* @ts-ignore */
         return this.freePool.length === 0 ? this.create() : table.remove(this.freePool);
     }
 
