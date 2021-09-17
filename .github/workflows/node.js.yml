@@ -40,4 +40,5 @@ jobs:
       with:
         path: ./dist/
     - run: cd dist
-    - run: npm publish
+    - continue-on-error: true
+      run: npm publish
