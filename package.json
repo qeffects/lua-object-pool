@@ -5,6 +5,7 @@
   "main": "index.lua",
   "scripts": {
     "build": "tstl && mv ./dist/* .",
+    "git-publish": "tstl",
     "dev": "tstl --watch"
   },
   "files": [
