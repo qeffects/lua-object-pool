@@ -29,13 +29,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm install
-    - run: npm run-script git-publish
-    - run: cp package.json ./dist/
-    - run: cp package-lock.json ./dist/
-    - run: cp README.md ./dist/
-    - run: cp LICENSE ./dist/
-    - run: cp .npmrc ./dist/
+    - run: npm install && npm run-script git-publish
+    - run: cp package.json ./dist/ && cp package-lock.json ./dist/ && cp README.md ./dist/ && cp LICENSE ./dist/ && cp .npmrc ./dist/
     - uses: actions/upload-artifact@v2.2.4
       with:
         path: ./dist/
