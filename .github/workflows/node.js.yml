@@ -21,9 +21,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/upload-artifact@v2.2.4
-      with:
-        path: ./dist/
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
       with:
@@ -35,4 +32,6 @@ jobs:
     - run: cp package-lock.json ./dist/
     - run: cp README.md ./dist/
     - run: cp LICENSE ./dist/
-    
+    - uses: actions/upload-artifact@v2.2.4
+      with:
+        path: ./dist/
